@@ -1,17 +1,275 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Track Your Goals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-      <h1>Browser Template</h1>
-    </body>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <div id="user-message"></div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Goal Tracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active" id="home">
+          <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li>
+          <div class="dropdown dropdown" id="login-toggle">
+            <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sign in
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">
+                <form id="sign-in-form" class="home">
+                  <input name="credentials[email]" type="email" placeholder="[ email_id ]">
+                  <br>
+                  <input name="credentials[password]" type="password" placeholder="[ password ]">
+                  <br>
+                  <input type="submit" value="[ sign_in ]">
+
+                </form>
+
+              </a>
+
+
+              <div class="dropdown dropdown">
+
+
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown dropdown" id="sign-up-toggle">
+            <button class="btn btn-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sign up
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+              <a class="dropdown-item">
+                <form id="sign-up-form" class="sign-up-form home">
+                  <input name="credentials[email]" type="email" placeholder="[ email_id ">
+                  <br>
+                  <input name="credentials[password]" type="password" placeholder="[ password ]">
+                  <br>
+                  <input name="credentials[password_confirmation]" type="password" placeholder="[ password_confirm ]">
+                  <br>
+                  <input class="btn btn-white" type="submit" value="[ sign Up ]">
+                </form>
+              </a>
+            </div>
+
+          </div>
+        </li>
+        <li class="nav-item dropdown" id="account">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+          <a class="dropdown-item" href="#">
+            <form id="sign-out-button">
+                  <button class="btn btn-white" type="submit">Sign out</button>
+                </form></a>
+          <a class="nav-link btn btn-white" href="#" data-toggle="modal" data-target="#change-password-Modal">Change Password</a>
+
+        </div>
+      </li>
+
+
+        <li class="nav-item dropdown" id="crud-goals">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            CRUD Goals
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <button class="dropdown-item btn btn-primary" type="button" data-toggle="modal" data-target="#create-goal-Modal">Create</button>
+
+
+
+
+            <a class="dropdown-item" href="#"><button class="get-index-btn btn btn-white" id="get-index-btn" type="button">Index</button></a>
+            <a class="dropdown-item" href="#"><button class="get-index-btn btn btn-white" id="get-goal-btn" type="button" data-toggle="modal" data-target="#get-goal-Modal">Get</button></a>
+            <a class="dropdown-item" href="#"><button class="dropdown-item btn btn-primary" id="update-goal-btn" type="button" data-toggle="modal" data-target="#update-goal-Modal">Update</button></a>
+            <a class="dropdown-item" href="#"><button class="dropdown-item btn btn-primary" id="delete-goal-btn" type="button" data-toggle="modal" data-target="#delete-goal-Modal">Delete</button></a>
+
+
+          </div>
+
+        </li>
+        <li class="nav-item" id="feature1">
+          <a class="nav-link" href="#">Feature1</a>
+        </li>
+
+      </ul>
+
+    </div>
+  </nav>
+
+</body>
+
+
+<!-- Modal -->
+<div class="modal fade" id="create-goal-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create a Goal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="create-goal-form">
+          <!-- <input name="day[today]" required type="text"    placeholder="What day is it today?"> -->
+          <input name="goal[title]" required type="string" placeholder="Set a Goal!">
+          <br>
+
+          <p>Your Goal</p>
+          <input name="goal[description]" required type="string" placeholder="Add a description">
+          <br>
+          <p>Description</p>
+          <input name="goal[importance]" required type="number" max=10 min=1>
+          <br>
+          <p>Importance [min: 1 max: 10]</p>
+          <input name="goal[completed]" type="checkbox" placeholder="Completed?"> Completed?<br>
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button class="btn btn-danger" type="submit">Set your Goal!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="update-goal-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Goal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="update-goal-form">
+          <!-- <input name="day[today]" required type="text"    placeholder="What day is it today?"> -->
+          <input name="goal[id]" required type="number" placeholder="Enter ID no.">
+          <br>
+          <p>Goal ID</p>
+          <input name="goal[title]" required type="string" placeholder="Set a Goal!">
+          <br>
+          <p>Your Goal</p>
+          <input name="goal[description]" required type="string" placeholder="Add a description">
+          <br>
+          <p>Description</p>
+          <input name="goal[importance]" required type="number" max=10 min=1>
+          <br>
+          <p>Importance [min: 1 max: 10]</p>
+          <input name="goal[completed]" type="checkbox" placeholder="Completed?"> Completed?<br>
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button class="btn btn-danger" type="submit">Update your Goal!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="delete-goal-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Goal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="delete-goal-form">
+          <input name="goal[id]" required type="number" placeholder="Enter ID no.">
+          <br>
+          <p>Goal ID</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button class="btn btn-danger" type="submit">Delete your Goal!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="get-goal-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Get Goal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="get-goal-form">
+          <input name="goal[id]" required type="number" placeholder="Enter ID no.">
+          <br>
+          <p>Goal ID</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button class="btn btn-danger" type="submit">Get your Goal!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="change-password-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="change-pw-form">
+                  <input name="passwords[old]" type="password" placeholder="{old_password}" id="oldpw">
+                  <input name="passwords[new]" type="password" placeholder="{new_password}" id="newpw">
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-danger" type="submit">Change Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>
