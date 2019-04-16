@@ -7,6 +7,7 @@ const homePage = function () {
   $('#home').hide()
   $('#login-toggle').show()
   $('#sign-up-toggle').show()
+  $('#display').html('')
 
 }
 

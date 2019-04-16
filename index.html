@@ -101,23 +101,20 @@
 
 
 
-            <a class="dropdown-item" href="#"><button class="get-index-btn btn btn-white" id="get-index-btn" type="button">Index</button></a>
-            <a class="dropdown-item" href="#"><button class="get-index-btn btn btn-white" id="get-goal-btn" type="button" data-toggle="modal" data-target="#get-goal-Modal">Get</button></a>
-            <a class="dropdown-item" href="#"><button class="dropdown-item btn btn-primary" id="update-goal-btn" type="button" data-toggle="modal" data-target="#update-goal-Modal">Update</button></a>
-            <a class="dropdown-item" href="#"><button class="dropdown-item btn btn-primary" id="delete-goal-btn" type="button" data-toggle="modal" data-target="#delete-goal-Modal">Delete</button></a>
+            <a class="dropdown-item" href="#"><button class="dropdown-item btn btn-white" id="get-index" type="button">Index</button></a>
+            <a class="dropdown-item" href="#"><button class="dropdown-item btn btn-white" id="get-goal" type="button" data-toggle="modal" data-target="#get-goal-Modal">Get</button></a>
+            <a class="dropdown-item" href="#"><button class="dropdown-item btn btn-white" id="update-goal" type="button" data-toggle="modal" data-target="#update-goal-Modal">Update</button></a>
+            <a class="dropdown-item" href="#"><button class="dropdown-item btn btn-white" id="delete-goal" type="button" data-toggle="modal" data-target="#delete-goal-Modal">Delete</button></a>
 
 
           </div>
 
         </li>
-        <li class="nav-item" id="feature1">
-          <a class="nav-link" href="#">Feature1</a>
-        </li>
-
       </ul>
 
     </div>
   </nav>
+    <div id="display"></div>
 
 </body>
 
@@ -146,15 +143,19 @@
           <br>
           <p>Importance [min: 1 max: 10]</p>
           <input name="goal[completed]" type="checkbox" placeholder="Completed?"> Completed?<br>
+          <br>
+          <button class="btn btn-danger" type="submit">Set your Goal!</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
 
 
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button class="btn btn-danger" type="submit">Set your Goal!</button>
+
+        <div id="create-goal-feedback"></div>
+
       </div>
     </div>
   </div>
@@ -171,29 +172,25 @@
       </div>
       <div class="modal-body">
         <form id="update-goal-form">
-          <!-- <input name="day[today]" required type="text"    placeholder="What day is it today?"> -->
-          <input name="goal[id]" required type="number" placeholder="Enter ID no.">
+
+          <input name="goal[id]" type="text" placeholder="Enter ID no.">
           <br>
           <p>Goal ID</p>
-          <input name="goal[title]" required type="string" placeholder="Set a Goal!">
+          <input name="goal[title]" type="text" placeholder="Set a Goal!">
           <br>
           <p>Your Goal</p>
-          <input name="goal[description]" required type="string" placeholder="Add a description">
+          <input name="goal[description]"  type="text" placeholder="Add a description">
           <br>
           <p>Description</p>
-          <input name="goal[importance]" required type="number" max=10 min=1>
+          <input name="goal[importance]"  type="number" max=10 min=1>
           <br>
           <p>Importance [min: 1 max: 10]</p>
           <input name="goal[completed]" type="checkbox" placeholder="Completed?"> Completed?<br>
-
-
-
+          <br>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-danger" type="submit">Update your Goal!</button>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button class="btn btn-danger" type="submit">Update your Goal!</button>
+
       </div>
     </div>
   </div>
@@ -210,15 +207,17 @@
       </div>
       <div class="modal-body">
         <form id="delete-goal-form">
-          <input name="goal[id]" required type="number" placeholder="Enter ID no.">
+          <input name="goal[id]" required type="text" placeholder="Enter ID no.">
           <br>
           <p>Goal ID</p>
+          <br>
+          <br>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          <button class="btn btn-danger" type="submit">Delete your Goal!</button>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button class="btn btn-danger" type="submit">Delete your Goal!</button>
+
+
       </div>
     </div>
   </div>
@@ -235,16 +234,18 @@
       </div>
       <div class="modal-body">
         <form id="get-goal-form">
-          <input name="goal[id]" required type="number" placeholder="Enter ID no.">
+          <input name="goal[id]" type="text" placeholder="Enter ID no.">
           <br>
           <p>Goal ID</p>
+          <br>
+          <br>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-danger" type="submit">Get your Goal!</button>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button class="btn btn-danger" type="submit">Get your Goal!</button>
-      </div>
+
+
+
     </div>
   </div>
 </div>
@@ -262,14 +263,17 @@
         <form id="change-pw-form">
                   <input name="passwords[old]" type="password" placeholder="{old_password}" id="oldpw">
                   <input name="passwords[new]" type="password" placeholder="{new_password}" id="newpw">
-            </form>
-      </div>
-      <div class="modal-footer">
+
+            <br>
+            <br>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button class="btn btn-danger" type="submit">Change Password</button>
-      </div>
+        </form>
+        <div class="modal-footer" id="change-pw-feedback"></div>
     </div>
   </div>
+  </div>
 </div>
+
 
 </html>
