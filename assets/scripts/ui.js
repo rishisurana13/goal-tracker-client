@@ -3,8 +3,6 @@
 const store = require('./store.js')
 const elements = require('./elements.js')
 
-
-
 const signInSuccess = (responseData) => {
   $('#user-message').text('successfully signed In!')
   store.userId = responseData.user.id
@@ -29,12 +27,9 @@ const signOutSuccess = (responseData) => {
   $('#user-message').text('successfully signed Out!')
   store.user = null
 
-
   setTimeout(function () {
     $('#user-message').text('')
   }, 2000)
-
-
 }
 
 const changePasswordFailure = () => {
@@ -53,13 +48,11 @@ const changePasswordSuccess = () => {
 }
 
 const failure = () => {
-
   $('#user-message').text('something went wrong')
 
   setTimeout(function () {
     $('#user-message').text('')
   }, 2000)
-
 
   // $('form').trigger('reset')
 }
@@ -81,29 +74,31 @@ const createGoalFailure = () => {
 }
 
 const getIndexSuccess = (responseData) => {
-  $('#display').html('')
+  $('#display').text('')
   const goals = responseData.goals
+
   const sortGoals = goals.sort(function (a, b) {
-    return b.importance - a.importance
+    return a.completed - b.completed
   })
-
-
 
   for (let i = 0; i < (sortGoals.length); i++) {
     const goal = sortGoals[i]
     if (goal.owner === store.user._id) {
-    const normal = i + 1
-    const userHtml = (`
+      const normal = i + 1
+      const userHtml = (`
 
-        <div class="col-sm-4 col-lg-3 box">
+        <div id="box${i}" class="col-sm-4 col-lg-3 box">
       <pre>
 
   ID: ${normal}
   Goal: ${goal.title}
   Importance: ${goal.importance}
 
-
   Description: ${goal.description}
+  Completed: ${goal.completed}
+
+
+
   key: ${goal._id}
 
       </pre>
@@ -111,11 +106,12 @@ const getIndexSuccess = (responseData) => {
 
       `)
 
-    $('#display').append(userHtml)
-}
-}
-
-
+      $('#display').append(userHtml)
+      if (goal.completed === true) {
+        $(`#box${i}`).addClass('completed')
+      }
+    }
+  }
 
   $('#user-message').text('Successfully retrieved Index')
 
@@ -127,7 +123,7 @@ const getIndexSuccess = (responseData) => {
 const getGoalSuccess = function (responseData) {
   const goal = responseData.goal
 
-$('#display').html(' ')
+  $('#display').html(' ')
 
   const userHtml = (`
     <div class="col-sm-4 col-lg-3 box">
@@ -146,11 +142,6 @@ $('#display').html(' ')
 
 
    </pre>
-
-
-
-
-
   </div>
           `)
 
@@ -164,7 +155,6 @@ const updateGoalSuccess = function () {
     $('#user-message-2').text('')
   }, 2000)
   $('#update-goal-form').trigger('reset')
-
 }
 
 const updateGoalFailure = function () {
@@ -173,11 +163,9 @@ const updateGoalFailure = function () {
     $('#user-message-2').text('')
   }, 2000)
   $('#update-goal-form').trigger('reset')
-
 }
 
 const deleteGoalSuccess = function () {
-
   $('#delete-goal-form').trigger('reset')
   $('#user-message-2').html('DELETED Successfully')
   setTimeout(function () {
@@ -186,7 +174,6 @@ const deleteGoalSuccess = function () {
 }
 
 const deleteGoalFailure = function () {
-
   $('#delete-goal-form').trigger('reset')
   $('#user-message-2').html('Something went wrong')
   setTimeout(function () {

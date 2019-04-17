@@ -3,8 +3,18 @@
 .box {
   background-color: white;
   border: 2px solid black;
+
   // text-align: center;
   display: inline-flex;
   height: 110px;
   width: 350px;
+}
+
+.completed {
+  background-color: yellow;
+}
+
+
+  .box:hover {
+  background-color: gray;
 }

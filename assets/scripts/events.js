@@ -97,6 +97,8 @@ const onUpdateGoal = function (event) {
   const formData = getFormFields(event.target)
   const goal = formData.goal
 
+
+
   api.updateGoal(goal)
     .then(ui.updateGoalSuccess)
     .then(api.indexGoals)
@@ -117,6 +119,8 @@ const onDeleteGoal = function (event) {
     .catch(ui.deleteGoalFailure)
 
 }
+
+
 
 
 module.exports = {
