@@ -91,6 +91,7 @@ const getIndexSuccess = (responseData) => {
 
   for (let i = 0; i < (sortGoals.length); i++) {
     const goal = sortGoals[i]
+    if (goal.owner === store.user._id) {
     const normal = i + 1
     const userHtml = (`
 
@@ -111,6 +112,7 @@ const getIndexSuccess = (responseData) => {
       `)
 
     $('#display').append(userHtml)
+}
 }
 
 
@@ -134,11 +136,13 @@ $('#display').html(' ')
     Goal: ${goal.title}
     Description: ${goal.description}
     Importance: ${goal.importance}
+
+
     Steps: ${goal.steps}
 
 
 
-    key: ${goal.key}
+    key: ${goal._id}
 
 
    </pre>
@@ -155,9 +159,18 @@ $('#display').html(' ')
 }
 
 const updateGoalSuccess = function () {
-  $('#user-message').html('goal UPDATED')
+  $('#user-message-2').html('goal UPDATED')
   setTimeout(function () {
-    $('#user-message').text('')
+    $('#user-message-2').text('')
+  }, 2000)
+  $('#update-goal-form').trigger('reset')
+
+}
+
+const updateGoalFailure = function () {
+  $('#user-message-2').html('goal failed to update')
+  setTimeout(function () {
+    $('#user-message-2').text('')
   }, 2000)
   $('#update-goal-form').trigger('reset')
 
@@ -166,9 +179,18 @@ const updateGoalSuccess = function () {
 const deleteGoalSuccess = function () {
 
   $('#delete-goal-form').trigger('reset')
-  $('#user-message').html('DELETED Successfully')
+  $('#user-message-2').html('DELETED Successfully')
   setTimeout(function () {
-    $('#user-message').text('')
+    $('#user-message-2').text('')
+  }, 2000)
+}
+
+const deleteGoalFailure = function () {
+
+  $('#delete-goal-form').trigger('reset')
+  $('#user-message-2').html('Something went wrong')
+  setTimeout(function () {
+    $('#user-message-2').text('')
   }, 2000)
 }
 
@@ -184,5 +206,7 @@ module.exports = {
   getIndexSuccess,
   getGoalSuccess,
   updateGoalSuccess,
-  deleteGoalSuccess
+  deleteGoalSuccess,
+  deleteGoalFailure,
+  updateGoalFailure
 }

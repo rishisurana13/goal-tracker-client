@@ -62,6 +62,8 @@ const onCreateGoal = (event) => {
 
   api.createGoal(formData)
     .then(ui.createGoalSuccess)
+    .then(api.indexGoals)
+    .then(ui.getIndexSuccess)
     .catch(ui.createGoalFailure)
 
   // $('form').trigger('reset')
@@ -70,7 +72,7 @@ const onCreateGoal = (event) => {
 const onIndexGoals = (event) => {
   event.preventDefault()
   // const form = event.target
-  const id = store.user._id
+  // const id = store.user._id
 
 
   api.indexGoals()
@@ -99,7 +101,7 @@ const onUpdateGoal = function (event) {
     .then(ui.updateGoalSuccess)
     .then(api.indexGoals)
     .then(ui.getIndexSuccess)
-    .catch(ui.failure)
+    .catch(ui.updateGoalFailure)
 
 }
 
@@ -112,7 +114,7 @@ const onDeleteGoal = function (event) {
     .then(ui.deleteGoalSuccess) // this
     .then(api.indexGoals)
     .then(ui.getIndexSuccess)
-    .catch(ui.failure)
+    .catch(ui.deleteGoalFailure)
 
 }
 
