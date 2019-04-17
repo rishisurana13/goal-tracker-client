@@ -81,35 +81,50 @@ const createGoalFailure = () => {
 }
 
 const getIndexSuccess = (responseData) => {
-  $('#display').html('')
+  $('#display').text('')
   const goals = responseData.goals
+
   const sortGoals = goals.sort(function (a, b) {
-    return b.importance - a.importance
+    return b.completed - a.completed
   })
+
+
 
 
 
   for (let i = 0; i < (sortGoals.length); i++) {
     const goal = sortGoals[i]
     if (goal.owner === store.user._id) {
+
+      // if (goal.completed === true) {
+      //
+      // }
+
     const normal = i + 1
     const userHtml = (`
 
-        <div class="col-sm-4 col-lg-3 box">
+        <div id="indexBox" class="col-sm-4 col-lg-3 box">
       <pre>
 
   ID: ${normal}
   Goal: ${goal.title}
   Importance: ${goal.importance}
 
-
   Description: ${goal.description}
+  Completed: ${goal.completed}
+
+
+
   key: ${goal._id}
 
       </pre>
   </div>
 
       `)
+      if (goal.completed === true) {
+        $('#indexBox').css('background-color', 'yellow')
+      }
+
 
     $('#display').append(userHtml)
 }
