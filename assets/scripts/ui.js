@@ -2,6 +2,7 @@
 
 const store = require('./store.js')
 const elements = require('./elements.js')
+const events = require('./events.js')
 
 const signInSuccess = (responseData) => {
   $('#user-message').text('successfully signed In!')
@@ -97,16 +98,16 @@ const getIndexSuccess = (responseData) => {
   Description: ${goal.description}
   Completed: ${goal.completed}
 
-
-
   key: ${goal._id}
 
-      </pre>
+  </pre>
   </div>
 
       `)
+      // <button class="btn btn-white" id="see-goal-button" data-toggle="modal" type="button" data-target="#get-this-Modal">Details</button>
 
       $('#display').append(userHtml)
+
       if (goal.completed === true) {
         $(`#box${i}`).addClass('completed')
       }
@@ -122,32 +123,21 @@ const getIndexSuccess = (responseData) => {
 
 const getGoalSuccess = function (responseData) {
   const goal = responseData.goal
-
-  $('#display').html(' ')
-
-  const userHtml = (`
-    <div class="col-sm-4 col-lg-3 box">
-  <pre>
-
-    Goal: ${goal.title}
-    Description: ${goal.description}
-    Importance: ${goal.importance}
-
-
-    Steps: ${goal.steps}
-
-
-
-    key: ${goal._id}
-
-
-   </pre>
-  </div>
-          `)
-
-  $('#display').append(userHtml)
+  const thisGoal = elements.storedItems
+  thisGoal.storedGoal = responseData.goal
+if (goal !== null) {
+  $('#this-content-title').text('Title: ' + goal.title)
+  $('#this-content-importance').text('Importance: ' + goal.importance)
+  $('#this-content-description').text('Description: ' + goal.description)
+  $('#this-content-steps').text('Steps: ' + goal.steps)
+  $('#this-content-completed').text('Completed: ' + goal.completed)
+  $('#this-content-id').text('Key: ' + goal._id)
   $('#get-goal').trigger('reset')
 }
+
+}
+
+
 
 const updateGoalSuccess = function () {
   $('#user-message-2').html('goal UPDATED')
@@ -155,6 +145,10 @@ const updateGoalSuccess = function () {
     $('#user-message-2').text('')
   }, 2000)
   $('#update-goal-form').trigger('reset')
+  if (elements.storedItems.storedGoal !== null) {
+    elements.storedItems.storedGoal = null
+  }
+
 }
 
 const updateGoalFailure = function () {
@@ -163,6 +157,9 @@ const updateGoalFailure = function () {
     $('#user-message-2').text('')
   }, 2000)
   $('#update-goal-form').trigger('reset')
+  if (elements.storedItems.storedGoal !== null) {
+    elements.storedItems.storedGoal = null
+  }
 }
 
 const deleteGoalSuccess = function () {

@@ -22,8 +22,13 @@ const signedInContent = function () {
   $('#sign-up-toggle').hide()
 }
 
+const storedItems = {
+
+}
+
 
 module.exports = {
   homePage,
-  signedInContent
+  signedInContent,
+  storedItems
 }

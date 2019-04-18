@@ -17,6 +17,10 @@ $(() => {
   $('#get-index').on('click', events.onIndexGoals)
   $('#get-goal-form').on('submit', events.onGetGoal)
   $('#update-goal-form').on('submit', events.onUpdateGoal)
+  $('#get-goal').on('click', events.onLoadGetGoalForm)
   $('#delete-goal-form').on('submit', events.onDeleteGoal)
+  $('#update-goal-modal-foreign').on('click', events.onGetThenUpdateGoal)
+
+
 
 })
