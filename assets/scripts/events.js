@@ -91,15 +91,14 @@ const onGetGoal = function (event) {
 const onGetThenUpdateGoal = function () {
   const goal = elements.storedItems.storedGoal
   onLoadGetGoalForm()
-  if (goal !== null) {
   $('#update-goal-form').trigger('reset')
   $('#update-form-id').val($('#update-form-id').val() + goal._id)
   $('#update-form-title').val($('#update-form-title').val() + goal.title)
   $('#update-form-description').val($('#update-form-description').val() + goal.description)
   $('#update-form-importance').val($('#update-form-importance').val() + goal.importance)
   $('#update-form-completed').val($('#update-form-completed').val() + goal.completed)
-  elements.storedItems.storedGoal = null
-}
+
+
 
   elements.storedItems.storedGoal = null
 }
@@ -113,6 +112,7 @@ const onLoadGetGoalForm = function () {
   $('#this-content-id').text('')
   $('#get-goal-form').trigger('reset')
 }
+
 
 const onUpdateGoal = function (event) {
   event.preventDefault()
@@ -136,6 +136,8 @@ const onDeleteGoal = function (event) {
     .then(ui.getIndexSuccess)
     .catch(ui.deleteGoalFailure)
 }
+
+
 
 module.exports = {
   onSignIn,

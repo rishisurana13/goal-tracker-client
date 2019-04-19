@@ -97,6 +97,8 @@ const getIndexSuccess = (responseData) => {
 
   Description: ${goal.description}
   Completed: ${goal.completed}
+  Steps: ${goal.steps}
+
 
   key: ${goal._id}
 
