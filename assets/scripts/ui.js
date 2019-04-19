@@ -136,13 +136,21 @@ if (goal !== null) {
   $('#this-content-id').text('Key: ' + goal._id)
   $('#get-goal').trigger('reset')
 }
+$('#get-goal-feedback').text('RETRIEVED SUCCESSFULLY')
+setTimeout(function () {
+  $('#get-goal-feedback').text('')
+}, 2000)
 
 }
 
 
 
 const updateGoalSuccess = function () {
-  $('#user-message-2').html('goal UPDATED')
+  $('#user-message-2').text('GOAL UPDATED')
+  $('#update-goal-feedback').text('GOAL updated successfully!')
+  setTimeout(function () {
+    $('#update-goal-feedback').text('')
+  }, 2000)
   setTimeout(function () {
     $('#user-message-2').text('')
   }, 2000)
@@ -154,7 +162,12 @@ const updateGoalSuccess = function () {
 }
 
 const updateGoalFailure = function () {
-  $('#user-message-2').html('goal failed to update')
+  $('#user-message-2').text('GOAL failed to update')
+  $('#update-goal-feedback').text('GOAL Failed to update')
+  setTimeout(function () {
+    $('#update-goal-feedback').text('')
+  }, 2000)
+
   setTimeout(function () {
     $('#user-message-2').text('')
   }, 2000)
@@ -170,6 +183,10 @@ const deleteGoalSuccess = function () {
   setTimeout(function () {
     $('#user-message-2').text('')
   }, 2000)
+  $('#delete-goal-feedback').text('DELETED SUCCESSFULLY')
+  setTimeout(function () {
+    $('#delete-goal-feedback').text('')
+  }, 2000)
 }
 
 const deleteGoalFailure = function () {
@@ -177,6 +194,10 @@ const deleteGoalFailure = function () {
   $('#user-message-2').html('Something went wrong')
   setTimeout(function () {
     $('#user-message-2').text('')
+  }, 2000)
+  $('#delete-goal-feedback').text('DELETE FAILED')
+  setTimeout(function () {
+    $('#delete-goal-feedback').text('')
   }, 2000)
 }
 
