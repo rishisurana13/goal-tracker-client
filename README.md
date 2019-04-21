@@ -49,3 +49,19 @@ to determine my progress.
 + Set up CRUD functions
 + Add functionality
 + Revise
+
+# Routes
+| Verb    | URI Pattern            | Controller#Action             |
+|---------|------------------------|-------------------------------|
+| POST    | `/sign-up`             | `users.post/sign-up`          |
+| POST    | `/sign-in`             | `users.post/sign-in`          |
+| PATCH   | `/change-password`     | `users.patch/change-password` |
+| DELETE  | `/sign-out`            | `users.delete/sign-out`       |
+| POST    | `/goals`               | `create`                      |
+| GET     | `/goals`               | `goals#index`                 |
+| GET     | `/goals/:id`           | `goals#show`                  |
+| PATCH   | `/goals/:id`           | `goals#update`                |
+| DELETE  | `/goals/:id`           | `goals#destroy`               |
+
+# Preview
+!(https://imgur.com/a/xPHluxa)
