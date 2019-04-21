@@ -15,6 +15,10 @@ const signInSuccess = (responseData) => {
     $('#user-message').text('')
   }, 2000)
 }
+const signInFailure = function () {
+  $('#user-message').text('Sign in Failed! Please try again.')
+  $('#sign-in-form').trigger('reset')
+}
 const signUpSuccess = () => {
   $('#user-message').text('successfully signed up!')
   $('#sign-up-form').trigger('reset')
@@ -215,5 +219,6 @@ module.exports = {
   updateGoalSuccess,
   deleteGoalSuccess,
   deleteGoalFailure,
-  updateGoalFailure
+  updateGoalFailure,
+  signInFailure
 }
