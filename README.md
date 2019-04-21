@@ -64,5 +64,4 @@ to determine my progress.
 | DELETE  | `/goals/:id`           | `goals#destroy`               |
 
 # Preview
-![Preview]
-(https://imgur.com/a/xPHluxa.jpg)
+![Preview](https://i.imgur.com/VLAL055.png)
