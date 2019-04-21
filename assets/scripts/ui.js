@@ -89,13 +89,13 @@ const getIndexSuccess = (responseData) => {
   for (let i = 0; i < (sortGoals.length); i++) {
     const goal = sortGoals[i]
     if (goal.owner === store.user._id) {
-      const normal = i + 1
+
       const userHtml = (`
 
         <div id="box${i}" class="col-sm-4 col-lg-3 box">
       <pre>
 
-  ID: ${normal}
+  Key: ${goal._id}
   Goal: ${goal.title}
   Importance: ${goal.importance}
 
@@ -104,7 +104,7 @@ const getIndexSuccess = (responseData) => {
   Steps: ${goal.steps}
 
 
-  key: ${goal._id}
+
 
   </pre>
   </div>
