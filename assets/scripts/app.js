@@ -24,7 +24,7 @@ $(() => {
   $('#delete-goal-form').on('submit', events.onDeleteGoal)
   $('#update-goal-modal-foreign').on('click', events.onGetThenUpdateGoal)
 
-
+// aa
 
 
 })
