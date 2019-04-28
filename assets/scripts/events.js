@@ -72,7 +72,7 @@ const onCreateGoal = (event) => {
 const onIndexGoals = (event) => {
   event.preventDefault()
   // const form = event.target
-  // const id = store.user._id
+  // const id = store.user.id
 
   api.indexGoals()
     .then(ui.getIndexSuccess)
@@ -96,7 +96,7 @@ const onGetThenUpdateGoal = function () {
     $('#update-goal-form').trigger('reset')
   } else {
     $('#update-goal-form').trigger('reset')
-    $('#update-form-id').val($('#update-form-id').val() + goal._id)
+    $('#update-form-id').val($('#update-form-id').val() + goal.id)
     $('#update-form-title').val($('#update-form-title').val() + goal.title)
     $('#update-form-description').val($('#update-form-description').val() + goal.description)
     $('#update-form-importance').val($('#update-form-importance').val() + goal.importance)

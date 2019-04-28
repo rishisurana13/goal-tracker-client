@@ -88,14 +88,14 @@ const getIndexSuccess = (responseData) => {
 
   for (let i = 0; i < (sortGoals.length); i++) {
     const goal = sortGoals[i]
-    if (goal.owner === store.user._id) {
+    if (goal.owner === store.user.id) {
 
       const userHtml = (`
 
         <div id="box${i}" class="col-sm-4 col-lg-3 box">
       <pre>
 
-  Key: ${goal._id}
+  Key: ${goal.id}
   Goal: ${goal.title}
   Importance: ${goal.importance}
 
@@ -137,7 +137,7 @@ if (goal !== null) {
   $('#this-content-description').text('Description: ' + goal.description)
   $('#this-content-steps').text('Steps: ' + goal.steps)
   $('#this-content-completed').text('Completed: ' + goal.completed)
-  $('#this-content-id').text('Key: ' + goal._id)
+  $('#this-content-id').text('Key: ' + goal.id)
   $('#get-goal').trigger('reset')
 }
 $('#get-goal-feedback').text('RETRIEVED SUCCESSFULLY')
