@@ -6,7 +6,7 @@ const events = require('./events.js')
 
 const signInSuccess = (responseData) => {
   $('#user-message').text('successfully signed In!')
-  store.userId = responseData.user.id
+  store.userId = responseData.user._id
   store.user = responseData.user
 
   elements.signedInContent()
@@ -82,20 +82,22 @@ const getIndexSuccess = (responseData) => {
   $('#display').text('')
   const goals = responseData.goals
 
-  const sortGoals = goals.sort(function (a, b) {
-    return a.completed - b.completed
-  })
+  const sortGoals = goals
+
+  // .sort(function (a, b) {
+  //   return a.completed - b.completed
+  // })
 
   for (let i = 0; i < (sortGoals.length); i++) {
     const goal = sortGoals[i]
-    if (goal.owner === store.user.id) {
+
 
       const userHtml = (`
 
         <div id="box${i}" class="col-sm-4 col-lg-3 box">
       <pre>
 
-  Key: ${goal.id}
+  Key: ${goal._id}
   Goal: ${goal.title}
   Importance: ${goal.importance}
 
@@ -117,7 +119,7 @@ const getIndexSuccess = (responseData) => {
       if (goal.completed === true) {
         $(`#box${i}`).addClass('completed')
       }
-    }
+
   }
 
   $('#user-message').text('Successfully retrieved Index')
@@ -137,7 +139,7 @@ if (goal !== null) {
   $('#this-content-description').text('Description: ' + goal.description)
   $('#this-content-steps').text('Steps: ' + goal.steps)
   $('#this-content-completed').text('Completed: ' + goal.completed)
-  $('#this-content-id').text('Key: ' + goal.id)
+  $('#this-content-id').text('Key: ' + goal._id)
   $('#get-goal').trigger('reset')
 }
 $('#get-goal-feedback').text('RETRIEVED SUCCESSFULLY')
