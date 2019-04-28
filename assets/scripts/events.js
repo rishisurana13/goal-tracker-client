@@ -91,7 +91,7 @@ const onGetGoal = function (event) {
 const onGetThenUpdateGoal = function () {
   const goal = elements.storedItems.storedGoal
   onLoadGetGoalForm()
-
+// add
   if (goal === undefined || goal === null) {
     $('#update-goal-form').trigger('reset')
   } else {
